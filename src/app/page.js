@@ -7,7 +7,7 @@ const [data, setData] = useState([])
   const getaAPIData = async() =>
   {
 
-          const response = await axios.get('https://randomuser.me/api/')
+          const response = await axios.get('https://randomuser.me/api/?results=10')
           { console.log(response.data.results) }
           setData(response.data.results)
   }
@@ -18,7 +18,25 @@ const [data, setData] = useState([])
 
   return (
     <div>
+      
+        <h1>All data</h1>
         {
+                JSON.stringify(data)
+        }
+
+
+
+             <br/>
+             <br/>
+             <br/>
+             <br/>
+
+
+         <h1>using map</h1>    
+        {
+
+           
+
           data.map((value, index)=>(
          
             <div key={index}>
