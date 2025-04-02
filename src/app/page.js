@@ -6,10 +6,18 @@ const [data, setData] = useState([])
 
   const getaAPIData = async() =>
   {
+    try
+    {
+      const response = await axios.get('https://rndomuser.me/api/?results=10')
+      { console.log(response.data.results) }
+      setData(response.data.results)
+    }catch(error)
+    {
+         console.log('Error', error)
+         console.log('Error message', error.message)
+    }
 
-          const response = await axios.get('https://randomuser.me/api/?results=10')
-          { console.log(response.data.results) }
-          setData(response.data.results)
+         
   }
   useEffect(()=>{
     getaAPIData()
