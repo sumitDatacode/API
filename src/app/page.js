@@ -8,9 +8,15 @@ const [data, setData] = useState([])
   {
     try
     {
-      const response = await axios.get('https://rndomuser.me/api/?results=10')
-      { console.log(response.data.results) }
-      setData(response.data.results)
+      const response = await axios.get('https://randomuser.me/api/?results=10')
+     
+      if(response.status !== 200)
+      {
+        throw new Error('Failed to fetch data!'); 
+      }
+      
+       console.log(response.data.results)
+       setData(response.data.results)
     }catch(error)
     {
          console.log('Error', error)
