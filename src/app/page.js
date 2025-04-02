@@ -8,15 +8,27 @@ const [data, setData] = useState([])
   {
     try
     {
-      const response = await axios.get('https://randomuser.me/api/?results=10')
-     
-      if(response.status !== 200)
-      {
-        throw new Error('Failed to fetch data!'); 
+      const response = await fetch('https://randomuser.me/api/?results=10')
+      if (!response.ok) {
+        throw new Error('Failed to fetch data!');
       }
+
+
+      const data = await response.json();
+  
+     console.log('response', response);
+     setData(data.results);
+    
       
-       console.log(response.data.results)
-       setData(response.data.results)
+      // const response = await axios.get('https://randomuser.me/api/?results=10')
+     
+      // if(response.status !== 200)
+      // {
+      //   throw new Error('Failed to fetch data!'); 
+      // }
+      
+      //  console.log(response.data.results)
+      //  setData(response.data.results)
     }catch(error)
     {
          console.log('Error', error)
